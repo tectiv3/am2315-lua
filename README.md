@@ -10,7 +10,7 @@ am2315 = require("am2315")
 am2315 = nil
 package.loaded["am2315"]=nil
 ```
-##Example()
+##Example
 ####Description
 getting temperature and humidity data from am2315.<br />
 
