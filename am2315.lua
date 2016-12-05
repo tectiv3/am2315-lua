@@ -64,10 +64,16 @@ function read_data()
      if string.byte(b[1]) ~= 3 then return nil end --checking for correct response
      if string.byte(b[2]) ~= 4 then return nil end --number of bytes returned, should be 4
 
+     scale = 1
+     if string.byte(b[5]) >= 128 then
+        b[5] = string.char(string.byte(b[5]) - 128)
+        scale = -1
+     end
+
      h = string.byte(b[3]) * 256 + string.byte(b[4]) --humidity
      h = h / 10
      t = string.byte(b[5]) * 256 + string.byte(b[6]) --temperature
-     t = t / 10
+     t = (t / 10) * scale
      return t, h
 end
 return M
